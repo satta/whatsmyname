@@ -6,6 +6,7 @@ import (
 	"crypto/sha1"
 	"encoding/hex"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"math/big"
 	"os"
@@ -47,11 +48,21 @@ func main() {
 		}
 	}
 
-	hostname, err := os.Hostname()
+	var machineid string
+	machineid_b, err := ioutil.ReadFile("/etc/machine-id")
 	if err != nil {
-		log.Fatal(err)
+		log.Println("machine-id file not found, falling back to hostname...")
+		machineid_s, err := os.Hostname()
+		if err != nil {
+			log.Fatal(err)
+		} else {
+			log.Println("...using", machineid_s)
+			machineid = machineid_s
+		}
+	} else {
+		machineid = string(machineid_b)
 	}
-
+	hostname := string(machineid)
 	v := hostnameToRange(hostname, int64(len(words)))
 	w := hostnameToRange(msha1(hostname), int64(len(words)))
 	fmt.Printf("%s%s\n", words[v], words[w])
