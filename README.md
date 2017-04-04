@@ -1,8 +1,8 @@
 # whatsmyname
-Map machine IDs to noun pairs.
+Map machine IDs to noun pairs. Quick, dirty, but enough for my needs.
 
 ```
-[satta@tortuga:satta/whatsmyname] $ ./whatsmyname                                            ± [master] [0]
+[satta@tortuga:satta/whatsmyname] $ ./whatsmyname
 bazookaquality
-[satta@tortuga:satta/whatsmyname] $                                                          ± [master] [0]
+[satta@tortuga:satta/whatsmyname] $
 ```
